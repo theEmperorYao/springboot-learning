@@ -5,16 +5,39 @@ import com.tang.springboot.bean.Pet;
 import com.tang.springboot.bean.User;
 import com.tang.springboot.config.MyConfig;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
+import org.springframework.cache.interceptor.CacheAspectSupport;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
+//@SpringBootApplication
+
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan("com.tang.springboot")
 public class SpringbootLearningApplication {
 
     public static void main(String[] args) {
         // 返回我们的ioc容器
         ApplicationContext run = SpringApplication.run(SpringbootLearningApplication.class, args);
+
+        int beanDefinitionCount = run.getBeanDefinitionCount();
+        System.out.println("beanDefinitionCount = " + beanDefinitionCount);
+
+        String[] beanNamesForType = run.getBeanNamesForType(CacheAspectSupport.class);
+
+        for (String s : beanNamesForType) {
+            System.out.println(s);
+        }
+
+        String[] beanNamesForType1 = run.getBeanNamesForType(WebMvcProperties.class);
+        System.out.println("beanNamesForType1 = " + beanNamesForType1);
+
+
         // 查看我们的组件
 //        String[] beanDefinitionNames = run.getBeanDefinitionNames();
 //        for (String beanDefinitionName : beanDefinitionNames) {
