@@ -1,18 +1,13 @@
-package com.tang.springboot;
+package com.tang;
 
-import ch.qos.logback.core.db.DBHelper;
-import com.tang.springboot.bean.Pet;
-import com.tang.springboot.bean.User;
-import com.tang.springboot.config.MyConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
 import org.springframework.cache.interceptor.CacheAspectSupport;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.multipart.MultipartResolver;
 
 //@SpringBootApplication
 
@@ -36,6 +31,9 @@ public class SpringbootLearningApplication {
 
         String[] beanNamesForType1 = run.getBeanNamesForType(WebMvcProperties.class);
         System.out.println("beanNamesForType1 = " + beanNamesForType1);
+
+        String[] beanNamesForType2 = run.getBeanNamesForType(MultipartResolver.class);
+        System.out.println("beanNamesForType2 = " + beanNamesForType2);
 
 
         // 查看我们的组件
